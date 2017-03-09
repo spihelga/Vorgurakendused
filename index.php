@@ -4,33 +4,14 @@
 <head>
 	<meta charset="utf-8">
 	<title>Spihelga Vorgurakendused</title>
-	<style>
-	p > img:hover {width:400px; cursor:pointer}
-	h1 {background:green}
-	h1:hover {background:white}
-	h2 {color:blue; border:solid black; border-width:2px; text-align:center}
-	h3 {border-top:dashed blue; border-top-width:5px}
-	h4 {border:solid black 2px; border-radius:10px; text-align:center; font-family:monospace; text-decoration:underline}
-	h5 {font-style:italic; font-weight:200}
-	ul {list-style-type:square}
-	ol {list-style-type:upper-roman}
-	p {font-size:30px; }
-	
-	</style>
+	<link rel="stylesheet" type="text/css" href="CSS.css"/>
 </head>
 
 <body>
-	<h1>Mojo</h1>
-	<h2>Mojo</h2>
-	<h3>Mojo</h3>
-	<h4>Mojo</h4>
-	<h5>Mojo</h5>
-	<h6>Mojo</h6>
-<p>	
-<i>Mojo</i> - in the African-American folk belief called hoodoo, is an amulet consisting of a flannel bag containing one or more magical items. It is a "prayer in a bag", or a spell that can be carried with or on the host's body.
-</p>
+<?php error_reporting(E_ALL); ini_set('display_errors', 1); include 'mojo.php'; ?>
 <br />
-
+<p id="parr">kohale minnes läheb <span onclick="this.style.color='#'+Math.random().toString(16).substr(-6);">punaseks</span></p>
+<p onclick="this.style.color='#'+Math.random().toString(16).substr(-6);">Peale klikkides vahetab värvi</p>
 <pre>Alternative American names for the mojo bag include hand, 
 mojo hand, 
 conjure hand, 
@@ -67,6 +48,8 @@ The word "hand" in this context is defined as a combination of ingredients. The 
   <img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" />
  </a>
 </p>
+
+	<script src="js.js"></script>
 
 </body>
 

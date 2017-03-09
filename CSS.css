@@ -1,0 +1,11 @@
+	p > img:hover {width:400px; cursor:pointer}
+	h1 {background:green}
+	h1:hover {background:white}
+	h2 {color:blue; border:solid black; border-width:2px; text-align:center}
+	h3 {border-top:dashed blue; border-top-width:5px}
+	h4 {border:solid black 2px; border-radius:10px; text-align:center; font-family:monospace; text-decoration:underline}
+	h5 {font-style:italic; font-weight:200}
+	ul {list-style-type:square}
+	ol {list-style-type:upper-roman}
+	p {font-size:30px; }
+	
