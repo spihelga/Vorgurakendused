@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Spihelga Vorgurakendused</title>
+	<style>
+	#kast {width:200px; height:200px; position:fixed; top:50px; left:400px; background:none; border:none}
+	#pilt {position:fixed}
+	body {background:#0A24A9}
+	.samad {border-radius:50%; position:absolute}
+	div:nth-child(1) {height:100%; width:100%; background:white; border:solid 1px white; left:0px; top:0px}
+	div:nth-child(2) {height:90%; width:90%; background:red; border:solid 1px red; left:5%; top:5%}
+	div:nth-child(3) {height:80%; width:80%; background:white; border:solid 1px white; left:10%; top:10%}
+	div:nth-child(4) {height:60%; width:60%; background:red; border:solid 1px red; left:20%; top:20%}
+	div:nth-child(5) {height:40%; width:40%; background:white; border:solid 1px white; left:30%; top:30%}
+	div:nth-child(6) {height:20%; width:20%; background:red; border:solid 1px red; left:40%; top:40%}
+	</style>
+	
+</head>
+
+<body>
+<img src="duck.png" id="pilt"/>
+<div id="kast" onclick="uus();">
+	<div class="samad"></div>
+	<div class="samad"></div>
+	<div class="samad"></div>
+	<div class="samad"></div>
+	<div class="samad"></div>
+	<div class="samad"></div>
+</div>
+
+<script>
+	window.onload = function() {
+		var e = document.getElementById("kast");
+		e.onclick=function(){
+			e.style.left=Math.random()*400+"px";
+			e.style.top=Math.random()*250+"px";
+			}
+	}
+	</script>
+
+</body>
+
+</html>
