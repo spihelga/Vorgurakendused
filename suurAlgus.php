@@ -32,9 +32,8 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
 $texts=explode("\n",$text);
-foreach($texts as &$value) {
-	$value="<p> ".$value;
-	$value=$value." </p>";
+foreach($texts as &$value){
+	$value="<p> <span> ".substr($value,0,1)." </span>".substr($value,1)." </p>";
 }
 
 echo $texts[0];
