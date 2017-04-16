@@ -1,5 +1,5 @@
 <?php
-	require_once('../head.html');
+	require_once('head.html');
 ?>
 
 <div id="wrap">
@@ -26,5 +26,5 @@
 </div>
 
 <?php
-	require_once('../foot.html');
+	require_once('foot.html');
 ?>
