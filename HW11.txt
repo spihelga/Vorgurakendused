@@ -1,0 +1,123 @@
+spihelga@klass2-21-l:~$ mysql -A -u test test -p
+The program 'mysql' can be found in the following packages:
+ * mysql-client-core-5.7
+ * mariadb-client-core-10.0
+Ask your administrator to install one of them
+spihelga@klass2-21-l:~$ ssh spihelga@enos.itcollege.ee
+The authenticity of host 'enos.itcollege.ee (193.40.194.204)' can't be established.
+ECDSA key fingerprint is SHA256:OLl89EFRSLMfPyhF5oWXmJEO1cAaY/3T3PN3tnE0hX0.
+Are you sure you want to continue connecting (yes/no)? y
+Please type 'yes' or 'no': yes
+Warning: Permanently added 'enos.itcollege.ee,193.40.194.204' (ECDSA) to the list of known hosts.
+
+Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-72-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+New release '16.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+Your Hardware Enablement Stack (HWE) is supported until April 2019.
+*** System restart required ***
+Last login: Fri Apr 28 19:01:18 2017 from wifi.itcollege.ee
+spihelga@enos:~$ mysql -A -u test test -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19165
+Server version: 5.5.55-0ubuntu0.14.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+
+mysql> CREATE TABLE spihelgaloomaaed (id integer PRIMARY KEY auto_increment, nimi text, vanus integer(3), liik text, puur integer(4));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> describe spihelgaloomaaed
+    -> ;
++-------+---------+------+-----+---------+----------------+
+| Field | Type    | Null | Key | Default | Extra          |
++-------+---------+------+-----+---------+----------------+
+| id    | int(11) | NO   | PRI | NULL    | auto_increment |
+| nimi  | text    | YES  |     | NULL    |                |
+| vanus | int(3)  | YES  |     | NULL    |                |
+| liik  | text    | YES  |     | NULL    |                |
+| puur  | int(4)  | YES  |     | NULL    |                |
++-------+---------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+
+mysql> INSERT INTO spihelgaloomaaed (id, nimi, vanus, liik, puur) VALUES (1, 'Puppy', 5, 'panda', 4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO spihelgaloomaaed (nimi, vanus, liik, puur) VALUES ('Kasukas', 5, 'koaala', 4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO spihelgaloomaaed (nimi, vanus, liik, puur) VALUES ('Pärdu', 5, 'ahv', 4);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO spihelgaloomaaed (nimi, vanus, liik, puur) VALUES ('Hiiglane', 5, 'jääkaru', 3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO spihelgaloomaaed (nimi, vanus, liik, puur) VALUES ('Chappy', 5, 'hunt', 1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT nimi, puur FROM spihelgaloomaaed Where puur=4;
++---------+------+
+| nimi    | puur |
++---------+------+
+| Puppy   |    4 |
+| Kasukas |    4 |
+| Pärdu   |    4 |
++---------+------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT MAX(vanus) FROM spihelgaloomaaed;
++------------+
+| MAX(vanus) |
++------------+
+|          5 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MAX(vanus), MIN(vanus) FROM spihelgaloomaaed;
++------------+------------+
+| MAX(vanus) | MIN(vanus) |
++------------+------------+
+|          5 |          5 |
++------------+------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT puur, count(id) FROM spihelgaloomaaed Group by puur;
++------+-----------+
+| puur | count(id) |
++------+-----------+
+|    1 |         1 |
+|    3 |         1 |
+|    4 |         3 |
++------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> UPDATE spihelgaloomaaed SET vanus=vanus+1;
+Query OK, 5 rows affected (0.00 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> SELECT * FROM spihelgaloomaaed;
++----+----------+-------+-----------+------+
+| id | nimi     | vanus | liik      | puur |
++----+----------+-------+-----------+------+
+|  1 | Puppy    |     6 | panda     |    4 |
+|  2 | Kasukas  |     6 | koaala    |    4 |
+|  3 | Pärdu    |     6 | ahv       |    4 |
+|  4 | Hiiglane |     6 | jääkaru   |    3 |
+|  5 | Chappy   |     6 | hunt      |    1 |
++----+----------+-------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql>
