@@ -1,0 +1,16 @@
+<?php if(!empty($loomad)):
+foreach ($loomad as $key => $loom):
+?>
+
+<div> Puuris number <?php echo ($key);?> asuvad järgnevad loomad 
+
+	<?php foreach ($loom as $value):?>
+        <div><img src= "<?php echo $value;?>"></div>
+	<?php next ($loomad);?>
+
+<?php
+      	endforeach;
+	endforeach;
+        endif;
+?>
+</div>

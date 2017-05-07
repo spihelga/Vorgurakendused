@@ -28,8 +28,8 @@ function kuva_puurid(){
 	global $connection;
 	$puurid = array();
 	$number = array();
-	$sql = "SELECT DISTINCT puur, nimi FROM spihelgaloomaaed ORDER BY puur"; //SQL lause järgmises muutujas
-	$saadud = mysqli_query($connection, $sql) or die ("$query - " . mysqli:error($connection));	//tulemuse rida
+	$sql = "SELECT DISTINCT puur, nimi FROM spihelgaloomaaed ORDER BY puur";   			//SQL lause järgmises muutujas
+	$saadud = mysqli_query($connection, $sql) or die ("$query - " .mysqli_error($connection));	//Tulemuse rida
 	
 	while($i = mysqli_fetch_assoc($saadud)) {
 		$puurid[$i['puur']]=$i['puur'];
@@ -40,7 +40,7 @@ function kuva_puurid(){
 	foreach($puurid as $value){
 		$loomad[$value] = array();
 		$loomarida ="SELECT * FROM spihelgaloomaaed WHERE puur=$value";
-		$saadud2 = mysqli_query($connection, $loonarida);
+		$saadud2 = mysqli_query($connection, $loomarida);
 		
 		while ($j = mysqli_fetch_assoc($saadud2)){
 			array_push($loomad[$j['puur']], $j['liik']);
@@ -48,7 +48,7 @@ function kuva_puurid(){
 	}
 		
 	echo "<pre>";
-	print_r($puurid);
+	print_r($loomad);
 	echo "</pre>";
 
 	include_once('views/puurid.html');
