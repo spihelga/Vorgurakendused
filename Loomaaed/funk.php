@@ -92,7 +92,7 @@ global $connection;
 if ($_SESSION['user'] = 1){
 	if(!empty($_SERVER['REQUEST_METHOD'])){
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
-			if(empty($_POST['nimi']) || empty($_POST['puur']) || upload('liik) == ""){
+			if(empty($_POST['nimi']) || empty($_POST['puur']) || upload('liik') == ""){
 				$errors[] = "Vorm pole korrektselt täidetud";
 			}
 			else{
@@ -102,7 +102,7 @@ if ($_SESSION['user'] = 1){
 
 				$sql = "INSERT INTO spihelgaloomaaed (nimi, puur, liik) VALUES ('$nimi', $puur, '$liik')";
 				$saadud = mysqli_query($connection, $sql);
-				echo mysqli_insert_id($connection;
+				echo mysqli_insert_id($connection);
 
 				if(mysqli_insert_id($connection) !=0){
 					header("Location: ?page=loomad");
