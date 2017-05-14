@@ -13,8 +13,35 @@ function connect_db(){
 
 function logi(){
 	// siia on vaja funktsionaalsust (13. nädalal)
+global $connection;
 
-	include_once('views/login.html');
+if (!empty($_SESSION['user'])){
+	header("Location: ?page=loomad");
+}
+else if (!empty($_SERVER['REQUEST_METHOD'])) {
+	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+		if (empty($_POST['user']) || empty($POST['pass'])) {
+			$errors[] = "Palun sisesta kasutajanimi ja parool";
+		}
+		else {
+			$user = mysqli_real_escape_string($connection, $_POST['user']);
+			$pass = mysqli_real_escape_string($connection, $_POST['pass']);
+			
+			$sql = "SELECT * FROM spihelga_kylastasjad WHERE username='$user' AND passw=SHA1('$pass')";
+			$saadud = mysqli_query($connection, $sql);
+			
+			if (mysqli_num_rows($saadud) != 0){
+				$_SESSION['user'] = 1;
+				header("Location: ?page=loomad");
+			}
+			else {
+				$errors[] = "Vale kasutajanimi või parool";
+			}
+		}
+	}
+}
+include_once('views/login.html');
+
 }
 
 function logout(){
@@ -25,40 +52,70 @@ function logout(){
 
 function kuva_puurid(){
 	// siia on vaja funktsionaalsust
-	global $connection;
-	$puurid = array();
-	$number = array();
-	$sql = "SELECT DISTINCT puur, nimi FROM spihelgaloomaaed ORDER BY puur";   			//SQL lause järgmises muutujas
-	$saadud = mysqli_query($connection, $sql) or die ("$query - " .mysqli_error($connection));	//Tulemuse rida
-	
-	while($i = mysqli_fetch_assoc($saadud)) {
-		$puurid[$i['puur']]=$i['puur'];
+	if ($_SESSION['user'] !=1){ 		//see on logi funktsioonis määratud 1-ks või mitte, vaata ülalt
+	header("Location: ?page=login");
 	}
+	else{
+		global $connection;
+		$puurid = array();
+		$number = array();
+		$sql = "SELECT DISTINCT puur, nimi FROM spihelgaloomaaed ORDER BY puur";   			//SQL lause järgmises muutujas
+		$saadud = mysqli_query($connection, $sql) or die ("$query - " .mysqli_error($connection));	//Tulemuse rida
 	
-	$loomad = array();
-	
-	foreach($puurid as $value){
-		$loomad[$value] = array();
-		$loomarida ="SELECT * FROM spihelgaloomaaed WHERE puur=$value";
-		$saadud2 = mysqli_query($connection, $loomarida);
-		
-		while ($j = mysqli_fetch_assoc($saadud2)){
-			array_push($loomad[$j['puur']], $j['liik']);
+		while($i = mysqli_fetch_assoc($saadud)) {
+			$puurid[$i['puur']]=$i['puur'];
 		}
-	}
-		
-	echo "<pre>";
-	print_r($loomad);
-	echo "</pre>";
-
-	include_once('views/puurid.html');
 	
+		$loomad = array();
+	
+		foreach($puurid as $value){				//igale puurile oma rida
+			$loomad[$value] = array();	
+			$loomarida ="SELECT * FROM spihelgaloomaaed WHERE puur=$value";
+			$saadud2 = mysqli_query($connection, $loomarida);
+	
+			while ($j = mysqli_fetch_assoc($saadud2)){	//igale puurile loom
+				array_push($loomad[$j['puur']], $j['liik']);	//lisan arraysse
+			}
+		}
+	
+		echo "<pre>";
+		print_r($loomad);
+		echo "</pre>";
+	
+		include_once('views/puurid.html');
+	}
 }
 
 function lisa(){
 	// siia on vaja funktsionaalsust (13. nädalal)
+global $connection;
+if ($_SESSION['user'] = 1){
+	if(!empty($_SERVER['REQUEST_METHOD'])){
+		if($_SERVER['REQUEST_METHOD'] == 'POST'){
+			if(empty($_POST['nimi']) || empty($_POST['puur']) || upload('liik) == ""){
+				$errors[] = "Vorm pole korrektselt täidetud";
+			}
+			else{
+				$nimi = mysqli_real_escape_string($connection,$_POST['nimi']);
+				$puur = mysqli_real_escape_string($connection,$_POST['puur']);
+				$liik = mysqli_real_escape_string($connection,upload('liik'));
+
+				$sql = "INSERT INTO spihelgaloomaaed (nimi, puur, liik) VALUES ('$nimi', $puur, '$liik')";
+				$saadud = mysqli_query($connection, $sql);
+				echo mysqli_insert_id($connection;
+
+				if(mysqli_insert_id($connection) !=0){
+					header("Location: ?page=loomad");
+				}
+			}
+		}
+	}
+}
+else{
+header("Location: ?page=login");
+}
 	
-	include_once('views/loomavorm.html');
+include_once('views/loomavorm.html');
 	
 }
 
