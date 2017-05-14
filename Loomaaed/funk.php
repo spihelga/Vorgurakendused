@@ -27,7 +27,7 @@ else if (!empty($_SERVER['REQUEST_METHOD'])) {
 			$user = mysqli_real_escape_string($connection, $_POST['user']);
 			$pass = mysqli_real_escape_string($connection, $_POST['pass']);
 			
-			$sql = "SELECT * FROM spihelga_kylastasjad WHERE username='$user' AND passw=SHA1('$pass')";
+			$sql = "SELECT * FROM spihelga_kylastajad WHERE username='$user' AND passw=SHA1('$pass')";
 			$saadud = mysqli_query($connection, $sql);
 			
 			if (mysqli_num_rows($saadud) != 0){
