@@ -31,6 +31,9 @@ else if (!empty($_SERVER['REQUEST_METHOD'])) {
 			$saadud = mysqli_query($connection, $sql);
 			
 			if (mysqli_num_rows($saadud) != 0){
+				while ($roll = mysqli_fetch_assoc($saadud)) {
+					$_SESSION['roll'] = $roll['roll'];
+				}
 				$_SESSION['user'] = 1;
 				header("Location: ?page=loomad");
 			}
@@ -89,7 +92,7 @@ function kuva_puurid(){
 function lisa(){
 	// siia on vaja funktsionaalsust (13. nädalal)
 global $connection;
-if ($_SESSION['user'] = 1){
+if ($_SESSION['user'] = 1 && $_SESSION['roll'] == 'admin'){
 	if(!empty($_SERVER['REQUEST_METHOD'])){
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			if(empty($_POST['nimi']) || empty($_POST['puur']) || upload('liik') == ""){
@@ -114,10 +117,58 @@ if ($_SESSION['user'] = 1){
 else{
 header("Location: ?page=login");
 }
-	
 include_once('views/loomavorm.html');
-	
 }
+
+function hangi_loom($id) {
+global $connection;
+
+$sql = "SELECT * FROM spihelgaloomaaed WHERE id=$id";
+$saadud = mysqli_query($connection, $sql) or die ("See loom on veel tulemata");
+
+	if (mysqli_num_rows($saadud) !=0) {
+		$info = array();
+		while ($rida=mysqli_fetch_assoc($saadud)) {
+			$info=$rida;
+		}
+		return $info;
+	}
+	else {
+		header("Location: ?page=loomad");
+	}
+}
+
+function muuda(){
+global $connection;
+
+	if ($_SESSION['user'] = 1 && $_SESSION['roll'] == 'admin'){
+		
+		if (!empty($_SERVER['REQUEST_METHOD'])){
+			if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+				if (empty($_POST['id']) || ($_GET['page'] != 'muuda)){
+					header("Location: ?page=loomad");
+				}
+				hangi_loom($_POST['id']);
+				if (empty($_POST['nimi'] || upload('liik') == ""){
+					$errors[] = "Looma pole veel lisatud";
+				}
+				else{
+					$nimi = mysqli_real_escape_string($connection, $_POST['nimi']);
+					$puur = mysqli_real_escape_string($connection, $_POST['puur']);
+					$liik = mysqli_real_escape_string($connection, $_POST['liik']);
+					
+					$sql = "UPDATE spihelgaloomaaed SET nimi='$nimi', puur='$puur', liik='$liik'";
+					$saadud = mysqli_query($connection, $sql);
+					echo mysqli_insert_id($connection);
+
+					header("Location: ?page=loomad");
+				}
+			}
+		}
+	}
+include_once('views/editvorm.html');
+}
+
 
 function upload($name){
 	$allowedExts = array("jpg", "jpeg", "gif", "png");

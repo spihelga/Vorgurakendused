@@ -6,7 +6,7 @@ foreach ($loomad as $key => $loom):
 
 	<?php foreach ($loom as $value):?>
         <div><img src= "<?php echo $value;?>"></div>
-	<?php next ($loomad);?>
+	<?php if ($_SESSION['roll'] == 'admin'):?><a href="?page=muuda">Muuda</a> <?php endif;?> <?php  next ($loomad);?>
 
 <?php
       	endforeach;
