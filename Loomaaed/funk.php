@@ -130,8 +130,9 @@ $saadud = mysqli_query($connection, $sql) or die ("See loom on veel tulemata");
 		$info = array();
 		while ($rida=mysqli_fetch_assoc($saadud)) {
 			$info=$rida;
-		}
+		
 		return $info;
+		}
 	}
 	else {
 		header("Location: ?page=loomad");
@@ -145,11 +146,11 @@ global $connection;
 		
 		if (!empty($_SERVER['REQUEST_METHOD'])){
 			if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-				if (empty($_POST['id']) || ($_GET['page'] != 'muuda)){
+				if (empty($_POST['id']) || ($_GET['page'] != 'muuda')){
 					header("Location: ?page=loomad");
 				}
 				hangi_loom($_POST['id']);
-				if (empty($_POST['nimi'] || upload('liik') == ""){
+				if (empty($_POST['nimi']) || upload('liik') == ""){
 					$errors[] = "Looma pole veel lisatud";
 				}
 				else{
