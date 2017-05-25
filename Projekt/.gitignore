@@ -1,0 +1,8 @@
+*~
+*.swp
+*.bak
+*.tmp
+*.class
+*.pyc
+*.so
+*.o
