@@ -15,10 +15,10 @@ switch($page){
 		include_once("pealeht.html");
 	break;
 	case "Discgolfist":
-		include_once("discgolfist.html")
+		include_once("discgolfist.html");
 	break;
 	case "Mängijad":
-		include_once("players.html")
+		include_once("players.html");
 	break;
 	default:
 		include_once('pealeht.html');

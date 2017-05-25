@@ -1,4 +1,6 @@
 #wrap {
+	top: 100px;
+	position: relative;
 	width: 800px;
 	padding: 50px;
 	text-align: left;
@@ -7,28 +9,50 @@
 }
 
 #header {
-	position:fixed;
+	font-size: 200%;
+	position: fixed;
 	top: 0px;
 	left: 0px;
-	padding: 50px;
+	right: 0px;
+	padding: 5px;
+	text-align: center;
 	vertical-align: middle;
 	border: 3px solid #52BAFF;	
+}
+
+#header ul {
+	text-align: center;
+	list-style: none;
+	width: auto;
+	margin: 25px;
+	padding: 0px;
+}
+
+#header li {
+	display: inline-block;
+}
+
+#header a {
+	display: inline-block;
+	padding: 5px;
+	color: black;
 }
 
 html {
 	background-image: url(pics/bg.jpg);
 	background-position: center;
 	background-attachment: fixed;
+	background-size: cover;
 	font-family: 'Noto serif';
 	background-repeat: no-repeat;
 }
 
 footer {
-	position: static;
+	position: fixed;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
 	text-align: center;
-	padding: 30px;
-	border: 3px solid #035700;	
+	color: #E5E5E5;
+	padding: 20px;	
 }
