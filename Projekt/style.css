@@ -49,8 +49,6 @@ body {
 .pealeht {
         position: static;
 	opacity: 1;
-        drop-shadow: 5px 5px 10px #FFFFFF;
-        blur: 5px;
 }
 
 html {
