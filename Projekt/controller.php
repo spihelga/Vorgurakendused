@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 //require_once('fun.php');
 //connect_db();
 
@@ -8,21 +8,21 @@ if (isset($_GET['page']) && $_GET['page']!=""){
 	$page=htmlspecialchars($_GET['page']);
 }
 
-include_once('head.html');
+require_once('head.html');
 
 switch($page){
-	case "Pealeht":
-		include_once("pealeht.html");
+	case "pealeht":
+		include("pealeht.html");
 	break;
-	case "Discgolfist":
-		include_once("discgolfist.html");
+	case "discgolf":
+		include("discgolfist.html");
 	break;
-	case "Mängijad":
-		include_once("players.html");
+	case "players":
+		include("players.html");
 	break;
 	default:
-		include_once('pealeht.html');
+		include("pealeht.html");
 	break;
 }
-include_once('foot.html');
+require_once('foot.html');
 ?>
