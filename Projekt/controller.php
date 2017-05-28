@@ -17,7 +17,7 @@ switch($page){
 		include("discgolfist.html");
 	break;
 	case "kettad":
-		include("kettad.html");
+		kuva();
 	break;
 	default:
 		include("pealeht.html");
