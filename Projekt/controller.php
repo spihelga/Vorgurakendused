@@ -1,9 +1,8 @@
 <?php
+	require_once('funk.php');
+	session_start();
+	connect_db();
 	require_once('head.html');
-
-//session_start();
-//require_once('fun.php');
-//connect_db();
 
 $page="pealeht";
 if (isset($_GET['page']) && $_GET['page']!=""){
@@ -17,8 +16,8 @@ switch($page){
 	case "discgolf":
 		include("discgolfist.html");
 	break;
-	case "players":
-		include("players.html");
+	case "kettad":
+		include("kettad.html");
 	break;
 	default:
 		include("pealeht.html");
