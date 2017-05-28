@@ -1,0 +1,5 @@
+INSERT INTO spihelga_discs (tootja , nimi, liik, pilt) VALUES ('Latitude', 'Spike', 'putter', 'pics/lasp.png'),
+('Prodigy', 'A2', 'putter', 'pics/pra2.png'),
+('Innova', 'Roc3', 'midrange', 'pics/inro.png'),
+('Prodigy', 'D1', 'driver', 'pics/prd1.png'),
+('Latitude', 'Cutless', 'driver', 'pics/lacu.png');
