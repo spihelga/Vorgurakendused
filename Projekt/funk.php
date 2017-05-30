@@ -18,10 +18,8 @@ function kuva() {
 	$result = mysqli_query($connection, $sql) or die ("$sql - " .mysqli_error($connection));	//Tulemuse rida
 	
 	while($row = mysqli_fetch_assoc($result)) {
-		echo $row['id']." ".$row['tootja']." ".$row['nimi']." ".$row['liik']." <img src=".$row['pilt']." height='80px' alt='ketas' /> <br/>";
+		echo $row['id']." ".$row['tootja']." ".$row['nimi']." ".$row['liik']." <img src=".$row['pilt']." height='80' alt='ketas' /> <br/>";
 		}
-	
-//	include('kettad.html');
 }
 
 ?>
